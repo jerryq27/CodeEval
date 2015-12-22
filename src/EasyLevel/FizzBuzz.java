@@ -7,13 +7,7 @@ import java.util.Scanner;
 public class FizzBuzz {
 
     public static void main(String[] args) {
-        if(args.length > 1)
-        {
-            System.out.println("Args size bigger than expected.");
-            System.exit(0);
-        }
-        File testFile = new File(args[0]);
-        readFileData(testFile);
+        readFileData(new File(args[0]));
     }
 
     public static void readFileData(File file) {
@@ -41,11 +35,42 @@ public class FizzBuzz {
             nVals[count] = fileScanner.nextInt();
             count++;
         }
-        printValues(xVals, yVals, nVals);
+        for(int i = 0; i < nVals.length; i++)
+        {
+            printValues(xVals[i], yVals[i], nVals[i]);
+        }
     }
 
-    public static void printValues(int[] x, int[] y, int[] n) {
+    public static void printValues(int x, int y, int n) {
+        String[] printList = new String[n];
 
+        for(int dex = 0; dex < n; dex++)
+        {
+            int count = dex + 1;
+            if(count % x == 0 && count % y == 0)
+            {
+                printList[dex] = "FB";
+            }
+            else if(count % x == 0)
+            {
+                printList[dex] = "F";
+            }
+            else if(count % y == 0)
+            {
+                printList[dex] = "B";
+            }
+            else
+            {
+                printList[dex] = String.valueOf(count);
+            }
+        }
+
+        for(int i = 0; i < printList.length; i++)
+        {
+            System.out.print(printList[i] + " ");
+            if(i == printList.length - 1)
+                System.out.print("\n");
+        }
     }
 
     public static Scanner setUpConnection(File file) {
