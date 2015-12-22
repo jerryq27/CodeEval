@@ -7,22 +7,20 @@ import java.util.Scanner;
 public class FizzBuzz {
 
     public static void main(String[] args) {
-        System.out.print("Enter test file: ");
-        File testFile = new File(new Scanner(System.in).next());
+        if(args.length > 1)
+        {
+            System.out.println("Args size bigger than expected.");
+            System.exit(0);
+        }
+        File testFile = new File(args[0]);
         readFileData(testFile);
     }
 
     public static void readFileData(File file) {
         int[] xVals, yVals, nVals;
 
-        Scanner fileScanner = null;
-        try {
-            fileScanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Error in file input process: ");
-            e.printStackTrace();
-            System.exit(0);
-        }
+        Scanner fileScanner = setUpConnection(file);
+
         int count = 0;
         while(fileScanner.hasNextLine())
         {
@@ -30,13 +28,8 @@ public class FizzBuzz {
             fileScanner.nextLine();
         }
         fileScanner.close();
-        try {
-            fileScanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            System.out.println("Error in file input process: ");
-            e.printStackTrace();
-            System.exit(0);
-        }
+        fileScanner = setUpConnection(file);
+
         xVals = new int[count];
         yVals = new int[count];
         nVals = new int[count];
@@ -55,4 +48,15 @@ public class FizzBuzz {
 
     }
 
+    public static Scanner setUpConnection(File file) {
+        Scanner fileScanner = null;
+        try {
+            fileScanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Error in file input process: ");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        return fileScanner;
+    }
 }
