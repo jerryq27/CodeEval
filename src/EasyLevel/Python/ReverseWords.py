@@ -1,7 +1,12 @@
 import sys
 
 def printReverse(phrase):
-	print(phrase[phrase.find(' ') + 1:len(phrase)], phrase[:phrase.find(' ')])
+	words = phrase.split(" ")
+	printString = ""
+	for word in reversed(words):
+		printString += word + " "
+	print(printString.strip())
+
 
 theFile = open(sys.argv[1], "r")
 for line in theFile:
