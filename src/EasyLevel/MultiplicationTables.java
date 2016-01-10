@@ -33,7 +33,8 @@ public class MultiplicationTables {
         {
             for (int cols = 0; cols < multiplicationTable[rows].length; cols++)
             {
-                System.out.print(multiplicationTable[rows][cols] + "\t");
+                //System.out.print(multiplicationTable[rows][cols] + "\t");
+                System.out.printf("%4d", multiplicationTable[rows][cols]);
                 if(cols == multiplicationTable[rows].length - 1)
                     System.out.print("\n");
             }
